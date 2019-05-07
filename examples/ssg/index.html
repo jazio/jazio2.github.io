@@ -34,36 +34,15 @@
 <div id="impress" data-transition-duration="1000">
 
 <div id="markdown" class="step slide markdown" data-rel-x="0" data-rel-y="900">
-# Static Generators 
-## to author Impress.js presentations
+# Static Site Generators SSG
 
-* This presentation was written entirely in Markdown and
-* Added by popular request
-  * Easy way to make quick, simple yet aesthetic, presentations
-  * Authoring without all the clutter of HTML
+* Presentator: Ovidiu Farcas, EC, 2019
 
 -----
 # Jekyll SSG on Gitlab pipelines.
 
 The purpose of this presentation is to help you set up an efficient blog using Jekyll SSG and Gitlab for CI and hosting.
 
-
------
-# Styles
-
-* You can use *italics* & **bold**
-* ...and `code`
-
-
------
-# Modern SSG are gold!
-
-![Mother Teresa holding a newborn baby](images/3476636111_c551295ca4_b.jpg)
-
-> Spread love everywhere you go.
-*-- Mother Teresa*
-
-Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476636111/)@Flickr. CC-BY 2.0
 
 -----
 # Static vs dynamic sites
@@ -74,18 +53,25 @@ Image credit: [Peta de Aztlan](https://www.flickr.com/photos/peta-de-aztlan/3476
 # Static vs dynamic sites
 
 **Dynamic**
-+ Forms
-- Complexity
-- Vulnerability
-- Speed
-
+* (+) Forms
+* (+) Complexity
+* (-) Vulnerability
+* (-) Speed
+* (-) Traffic surges.
+Introducing caching layers such as Varnish or Memcached surely helps, but that ends up introducing more possible points of failure in the system.
 
 **Static**
-+ Fast load times.
-+ Security + Reliability
-+ Scalability
+* (+) Fast load times.
+* (+) Databaseless
+* (+) Security + Reliability
+* (+) Scalability
+* (+) Less complexity
+* (+) Markdown friendly
+* (+) Version control for content
 
-- Cumbersome to create forms.
+* (-) Cumbersome to create forms.
+* (-) No real time content
+* (-) No admin user interface
 
 -----
 Overcoming the disadvantages
@@ -104,8 +90,10 @@ Overcoming the disadvantages
 Over 450.
 For a complete list, I suggest you visit staticgen.com.
 
-Jekyll is the king.
+Jekyll is the King.
 
+###Facts.
+In 2012, Obama's presidential campaign raised $250M through a Jekyll website.
 
 
 -----
@@ -114,21 +102,137 @@ Jekyll is the king.
 
 ![Jekyll](https://snipcart.com/media/203657/jekyll.png)
 
+Databaseless.
 
-* 5 dashes are used to separate slides:
+Static
+Markdown, Liquid, HTML & CSS go in. Static sites come out ready for deployment.
 
-`-----`
+Blog-aware
+Permalinks, categories, pages, posts, and custom layouts are all first-class citizens here.
 
-* Attributes from `div.step` element are simply repeated.
-  * Better use relative positioning, lest your slides will all be on top of each other.
-* If you need to set some attributes, just use HTML and create a div element, then write 
-  Markdown inside each div.
+You can migrate your Wordpress.
+Threre are strong reasons to do so.
+
+-----
+
+Set it up
+
+
+On gitlab:
+Start by forking this repository
+(1) Fork this repository
+(2) IMPORTANT: Remove the fork relationship.
+Go to Settings (⚙) > Edit Project and click the "Remove fork relationship" button.
+(3) Enable Shared Runners.
+Go to Settings (⚙) > CI/CD > Pipelines and click the "Enable shared Runners" button.
+(4) Rename the repository to match the name you want for your site.
+(5) Edit your website through GitLab or clone the repository and push your changes
+
+Now wake up the monster:
+
+Note: In case you rename it to username.gitlab.io edit _config.yml change baseurl: "/jekyll" to baseurl: ""
+
+
+Change index.html to index.htm
+Add an article: 2019-05-05-my-new-article.md
+
+Add Darkmatter
+
+---
+layout: post
+title:  "Whatever Title"
+categories: [Blog, Tech]
+tags: [slack]
+---
+
+Note: Once removed, the fork relationship cannot be restored and you will no longer be able to send merge requests to the source.
+-----
+
+Learn Jekyll jargon
+
+
+Local
+Install Jekyll.
+Use jekyll new to create a new Jekyll Project.
+Add this .gitlab-ci.yml to the root of your project.
+Push your repository and changes to GitLab.
+
+
+GitLab CI
+This project's static Pages are built by GitLab CI, following the steps
+defined in .gitlab-ci.yml:
+
+`
+image: ruby:2.3
+
+variables:
+  JEKYLL_ENV: production
+
+pages:
+  script:
+  - bundle install
+  - bundle exec jekyll build -d public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+`
+
+-----
+What is ruby
+
+
+Open-source
+Great language design
+Ruby was always 100% object oriented language
+Gem libraries of Ruby make it easier for a programmer to develop a project by borrowing from the libraries.
+Runtime speed could be faster
+
+
+Ruby is what PHP could have been.
+------
+What is gem
+https://rubygems.org/
+gem command allows you to interact with rubygems.
+
+
+
+
+gem search ^rails
+$ gem search ^rails
+
+*** REMOTE GEMS ***
+
+rails (4.0.0)
+rails-3-settings (0.1.1)
+rails-action-args (0.1.1)
+rails-admin (0.0.0)
+rails-ajax (0.2.0.20130731)
+[...]
+
+------
+What is Bundler?
+
+Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed.
+It is a package manager. Similar to Composer (PHP) / Packagist.
+https://bundler.io/
+gem install bundler
+
+It has a Gemfile.lock
+------
+What is Liquid
+https://shopify.github.io/liquid/
+
+What is Ruby on Rails
+https://rubyonrails.org/
+MVC based framework. As Symfony in PHP.
+
+You’ve probably already used many of the applications that were built with Ruby on Rails: Basecamp, GitHub, Shopify, Airbnb, Twitch, SoundCloud, Hulu, Zendesk, Square, Cookpad
+------
+
 </div>
 
-<div id="title-slide" class="step slide title markdown" data-x="2000" data-y="5000">
-# Title slide
-## This slide has different CSS class than the previous ones
-</div>
 
 
 <div id="tilted-slide" class="step slide markdown" data-rotate="-85" data-x="2000" data-y="2000" data-z="1000" data-scale="4">
