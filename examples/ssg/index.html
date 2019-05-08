@@ -39,7 +39,7 @@
 * Presentator: Ovidiu Farcas, EC, 2019
 
 -----
-# Jekyll SSG on Gitlab pipelines.
+# Jekyll SSG on Gitlab Pipelines.
 
 The purpose of this presentation is to help you set up an efficient blog using Jekyll SSG and Gitlab for CI and hosting.
 
@@ -47,27 +47,28 @@ The purpose of this presentation is to help you set up an efficient blog using J
 -----
 # Static vs dynamic sites
 
-![Generic Usage](https://snipcart.com/media/203662/ssg1.png)
+**Dynamic**
+- (+) Forms
+- (+) Complexity
+- (-) Vulnerability
+- (-) Speed
+- (-) Traffic surges.
+
+Introducing caching layers such as Varnish or Memcached surely helps, but that ends up introducing more possible points of failure in the system.
 
 -----
 # Static vs dynamic sites
 
-**Dynamic**
-* (+) Forms
-* (+) Complexity
-* (-) Vulnerability
-* (-) Speed
-* (-) Traffic surges.
-Introducing caching layers such as Varnish or Memcached surely helps, but that ends up introducing more possible points of failure in the system.
 
+![Generic Usage](https://snipcart.com/media/203662/ssg1.png)
 **Static**
-* (+) Fast load times.
-* (+) Databaseless
-* (+) Security + Reliability
-* (+) Scalability
-* (+) Less complexity
-* (+) Markdown friendly
-* (+) Version control for content
+- (+) Fast load times.
+- (+) Databaseless
+- (+) Security + Reliability
+- (+) Scalability
+- (+) Less complexity
+- (+) Markdown friendly
+- (+) Version control for content
 
 * (-) Cumbersome to create forms.
 * (-) No real time content
@@ -120,38 +121,24 @@ Set it up
 
 On gitlab:
 Start by forking this repository
-(1) Fork this repository
-(2) IMPORTANT: Remove the fork relationship.
+- (1) Fork this repository
+- (2) IMPORTANT: Remove the fork relationship.
 Go to Settings (⚙) > Edit Project and click the "Remove fork relationship" button.
-(3) Enable Shared Runners.
+- (3) Enable Shared Runners.
 Go to Settings (⚙) > CI/CD > Pipelines and click the "Enable shared Runners" button.
-(4) Rename the repository to match the name you want for your site.
-(5) Edit your website through GitLab or clone the repository and push your changes
+- (4) Rename the repository to match the name you want for your site.
 
-Now wake up the monster:
+-----
+- (5) Now wake up the monster. Edit your website through GitLab or clone the repository and push your changes
 
 Note: In case you rename it to username.gitlab.io edit _config.yml change baseurl: "/jekyll" to baseurl: ""
-
-
 Change index.html to index.htm
 Add an article: 2019-05-05-my-new-article.md
-
-Add Darkmatter
-
----
-layout: post
-title:  "Whatever Title"
-categories: [Blog, Tech]
-tags: [slack]
----
-
 Note: Once removed, the fork relationship cannot be restored and you will no longer be able to send merge requests to the source.
 -----
 
-Learn Jekyll jargon
 
-
-Local
+##Local
 Install Jekyll.
 Use jekyll new to create a new Jekyll Project.
 Add this .gitlab-ci.yml to the root of your project.
@@ -159,9 +146,10 @@ Push your repository and changes to GitLab.
 
 
 GitLab CI
-This project's static Pages are built by GitLab CI, following the steps
+This project's static Pages are built by GitLab CI, 
+-----
+following the steps
 defined in .gitlab-ci.yml:
-
 `
 image: ruby:2.3
 
@@ -180,7 +168,18 @@ pages:
 `
 
 -----
-What is ruby
+
+#Learn Jekyll jargon
+
+Add Darkmatter
+
+
+layout: post
+title:  "Whatever Title"
+categories: [Blog, Tech]
+tags: [slack]
+-----
+#What is ruby
 
 
 Open-source
@@ -192,24 +191,20 @@ Runtime speed could be faster
 
 Ruby is what PHP could have been.
 ------
-What is gem
+#Ruby Gems
 https://rubygems.org/
 gem command allows you to interact with rubygems.
 
 
 
-
-gem search ^rails
-$ gem search ^rails
-
-*** REMOTE GEMS ***
-
-rails (4.0.0)
-rails-3-settings (0.1.1)
-rails-action-args (0.1.1)
-rails-admin (0.0.0)
-rails-ajax (0.2.0.20130731)
-[...]
+    $ gem search ^rails
+    //*** REMOTE GEMS ***
+        rails (4.0.0)
+        rails-3-settings (0.1.1)
+        rails-action-args (0.1.1)
+        rails-admin (0.0.0)
+        rails-ajax (0.2.0.20130731)
+        [...]
 
 ------
 What is Bundler?
