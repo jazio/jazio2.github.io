@@ -45,9 +45,10 @@ The purpose of this presentation is to help you set up an efficient blog using J
 
 
 -----
-# Static vs dynamic sites
+# Static vs Dynamic sites
 
 **Dynamic**
+
 - (+) Forms
 - (+) Complexity
 - (-) Vulnerability
@@ -57,11 +58,12 @@ The purpose of this presentation is to help you set up an efficient blog using J
 Introducing caching layers such as Varnish or Memcached surely helps, but that ends up introducing more possible points of failure in the system.
 
 -----
-# Static vs dynamic sites
-
+# Static vs Dynamic sites
 
 ![Generic Usage](https://snipcart.com/media/203662/ssg1.png)
+
 **Static**
+
 - (+) Fast load times.
 - (+) Databaseless
 - (+) Security + Reliability
@@ -75,7 +77,7 @@ Introducing caching layers such as Varnish or Memcached surely helps, but that e
 * (-) No admin user interface
 
 -----
-Overcoming the disadvantages
+# Overcoming the disadvantages
 
 - backend functions: Serverless, Webtask, Gitlab
 - deployment: Gitlab, Netlify
@@ -85,7 +87,7 @@ Overcoming the disadvantages
 
 -----
 
-# Static site generators
+# SSG Facts
 
 
 Over 450.
@@ -102,25 +104,25 @@ In 2012, Obama's presidential campaign raised $250M through a Jekyll website.
 # Jekyll
 
 ![Jekyll](https://snipcart.com/media/203657/jekyll.png)
+https://jekyllrb.com/
 
-Databaseless.
+Created by Github.
 
 Static
-Markdown, Liquid, HTML & CSS go in. Static sites come out ready for deployment.
+YML, Markdown, Liquid, HTML & CSS go in. Static sites come out ready for deployment.
 
 Blog-aware
 Permalinks, categories, pages, posts, and custom layouts are all first-class citizens here.
 
 You can migrate your Wordpress.
 Threre are strong reasons to do so.
-
 -----
+#Set it up
 
-Set it up
 
+On GitLab:
+Start by forking this repository:
 
-On gitlab:
-Start by forking this repository
 - (1) Fork this repository
 - (2) IMPORTANT: Remove the fork relationship.
 Go to Settings (⚙) > Edit Project and click the "Remove fork relationship" button.
@@ -136,9 +138,7 @@ Change index.html to index.htm
 Add an article: 2019-05-05-my-new-article.md
 Note: Once removed, the fork relationship cannot be restored and you will no longer be able to send merge requests to the source.
 -----
-
-
-##Local
+## Set up Local
 Install Jekyll.
 Use jekyll new to create a new Jekyll Project.
 Add this .gitlab-ci.yml to the root of your project.
@@ -150,6 +150,7 @@ This project's static Pages are built by GitLab CI,
 -----
 following the steps
 defined in .gitlab-ci.yml:
+
 `
 image: ruby:2.3
 
@@ -168,16 +169,15 @@ pages:
 `
 
 -----
-
 #Learn Jekyll jargon
 
 Add Darkmatter
 
 
-layout: post
-title:  "Whatever Title"
-categories: [Blog, Tech]
-tags: [slack]
+  layout: post 
+  title:  "Whatever Title"
+  categories: [Blog, Tech]
+  tags: [slack]
 -----
 #What is ruby
 
